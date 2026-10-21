@@ -8,13 +8,22 @@ namespace CET2007_Assignment___Turn_Based_Combat
 {
     public abstract class Combatant
     {
-        private int ID {  get; set; }
-        private string Name { get; set; }
-        private string Type { get; set; }
-        private int Health { get; set; }
-        private int Attack {  get; set; }
-        private int Defence { get; set; }
+        public int ID { get; private set; }
+        public string Name { get; private set; }
+        public string Type { get; private set; }
+        public int Health { get; private set; }
+        public int Attack {  get; private set; }
+        public int Defence { get; private set; }
 
+        public Combatant(int id, string name, string type, int health, int attack, int defence)
+        {
+            ID = id;
+            Name = name;
+            Type = type;
+            Health = health;
+            Attack = attack;
+            Defence = defence;
+        }
         public virtual int BasicAttack()
         {
             //Placeholder text for basic attack action
@@ -34,6 +43,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine(Name + " took " + damage + " damage from the attack.");
             Health -= damage;
             Console.WriteLine(Name + " now has " + Health + " health remaining.");
+            //Account for defence in the damage formulae
 
         }
         public abstract void CharacterInfo();

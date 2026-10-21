@@ -10,6 +10,9 @@ namespace CET2007_Assignment___Turn_Based_Combat
     {
         static void Main(string[] args)
         {
+            //Temporary test to see if info displays properly
+            Knight knight = new Knight();
+            knight.CharacterInfo();
         }
     }
 }
