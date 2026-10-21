@@ -14,17 +14,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
             //All parameters are passed up to the base class to keep them encapsulated
         }
 
-        public override void CharacterInfo()
-        {
-            Console.WriteLine("=== Character Info ===");
-            Console.WriteLine("ID: " + ID);
-            Console.WriteLine("Name: " + Name);
-            Console.WriteLine("Type: " + Type);
-            Console.WriteLine("Health: " + Health);
-            Console.WriteLine("Attack: " + Attack);
-            Console.WriteLine("Defence: " + Defence);
-        }
-
         public override int Skill1()
         {
             //Placeholder return value

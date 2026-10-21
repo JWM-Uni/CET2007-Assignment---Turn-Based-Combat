@@ -46,7 +46,16 @@ namespace CET2007_Assignment___Turn_Based_Combat
             //Account for defence in the damage formulae
 
         }
-        public abstract void CharacterInfo();
+        public void CharacterInfo()
+        {
+            Console.WriteLine("=== Character Info ===");
+            Console.WriteLine("ID: " + ID);
+            Console.WriteLine("Name: " + Name);
+            Console.WriteLine("Type: " + Type);
+            Console.WriteLine("Health: " + Health);
+            Console.WriteLine("Attack: " + Attack);
+            Console.WriteLine("Defence: " + Defence);
+        }
         public abstract int Skill1();
         public abstract int Skill2();
     }
