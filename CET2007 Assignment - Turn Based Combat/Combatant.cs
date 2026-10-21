@@ -28,6 +28,14 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine("Defending...");
             return 0;
         }
+
+        public void TakeDamage(int damage)
+        {
+            Console.WriteLine(Name + " took " + damage + " damage from the attack.");
+            Health -= damage;
+            Console.WriteLine(Name + " now has " + Health + " health remaining.");
+
+        }
         public abstract void CharacterInfo();
         public abstract int Skill1();
         public abstract int Skill2();
