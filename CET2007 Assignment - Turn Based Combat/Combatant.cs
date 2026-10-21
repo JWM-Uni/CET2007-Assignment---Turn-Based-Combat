@@ -15,14 +15,14 @@ namespace CET2007_Assignment___Turn_Based_Combat
         private int Attack {  get; set; }
         private int Defence { get; set; }
 
-        public int BasicAttack()
+        public virtual int BasicAttack()
         {
             //Placeholder text for basic attack action
             Console.WriteLine("Attacking...");
             return 0;
         }
 
-        public int Defend()
+        public virtual int Defend()
         {
             //Placeholder text for defend action
             Console.WriteLine("Defending...");
