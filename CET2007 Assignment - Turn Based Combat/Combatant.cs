@@ -11,9 +11,9 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public int ID { get; private set; }
         public string Name { get; private set; }
         public string Type { get; private set; }
-        public int Health { get; private set; }
-        public int Attack {  get; private set; }
-        public int Defence { get; private set; }
+        public int Health { get; set; }
+        public int Attack {  get; set; }
+        public int Defence { get; set; }
 
         public Combatant(int id, string name, string type, int health, int attack, int defence)
         {
