@@ -31,20 +31,24 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public int BasicAttack()
         {
             Console.WriteLine(Name + " uses basic attack.");
+            Logger.GetInstance().Log("Player (" + Type + ") used basic attack.");
             return Attack;
         }
 
         public int Defend()
         {
             Console.WriteLine(Name + " decides to defend");
+            Logger.GetInstance().Log("Player (" + Type + ") used defend.");
             return Defence;
         }
 
         public void TakeDamage(int damage)
         {
             Console.WriteLine(Name + " took " + damage + " damage from the attack.");
+            Logger.GetInstance().Log("Player (" + Type + ") took " + damage + " damage from the enemy attack.");
             Health -= damage;
             Console.WriteLine(Name + " now has " + Health + " health remaining.");
+            Logger.GetInstance().Log("Player (" + Type + ") has " + Health + " health remaining.");
             //Account for defence in the damage formulae
 
         }
@@ -59,6 +63,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine("Defence: " + Defence);
             Console.WriteLine("Skill 1: " + Skill1Name);
             Console.WriteLine("Skill 2: " + Skill2Name);
+            Logger.GetInstance().Log("Player decided to view their character information.");
         }
         public abstract int Skill1();
         public abstract int Skill2();

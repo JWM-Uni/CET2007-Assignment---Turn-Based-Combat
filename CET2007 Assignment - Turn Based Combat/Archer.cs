@@ -28,6 +28,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Logger.GetInstance().Log("Player (" + Type + ") used " + Skill2Name);
             Defence += 5; //NEEDS CHANGING TO ONLY BE TEMPORARY
             Console.WriteLine("Defence up (+5) until next turn.");
+            Logger.GetInstance().Log("Player (" + Type + ") gained +5 defence till their next turn");
             //Placeholder return value
             return 0;
         }
