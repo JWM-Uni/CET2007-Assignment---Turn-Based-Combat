@@ -19,8 +19,8 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public override int Skill1()
         {
             Console.WriteLine(Name + " used " + skill1 + ".");
-            int DamageBonus = 20;
-            return Attack * DamageBonus;
+            int DamageBonus = 15;
+            return Attack + DamageBonus;
         }
 
         public override int Skill2()
