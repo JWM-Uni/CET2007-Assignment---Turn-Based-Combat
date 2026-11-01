@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archer.cs" />
+    <Compile Include="CharacterFactory.cs" />
     <Compile Include="Combatant.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Logger.cs" />

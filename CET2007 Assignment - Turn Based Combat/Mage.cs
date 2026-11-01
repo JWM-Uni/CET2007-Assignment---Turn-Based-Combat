@@ -19,6 +19,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public override int Skill1()
         {
             Console.WriteLine(Name + " used " + skill1 + ".");
+            Logger.GetInstance().Log("Player (" + Type + ") used " + skill1);
             int DamageBonus = 45;
             return Attack + DamageBonus;
         }
@@ -26,8 +27,10 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public override int Skill2()
         {
             Console.WriteLine(Name + " used " + skill2 + ".");
+            Logger.GetInstance().Log("Player (" + Type + ") used " + skill2);
             Health += 40;
-            Console.WriteLine("Healed 40hp.");
+            Console.WriteLine("Healed 40 health.");
+            Logger.GetInstance().Log("Player healed 40 health");
             return 0;
         }
     }

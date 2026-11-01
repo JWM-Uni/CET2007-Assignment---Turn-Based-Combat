@@ -19,6 +19,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public override int Skill1()
         {
             Console.WriteLine(Name + " used " + skill1 + ".");
+            Logger.GetInstance().Log("Player (" + Type + ") used " + skill1);
             int DamageBonus = 15;
             return Attack + DamageBonus;
         }
@@ -26,6 +27,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public override int Skill2()
         {
             Console.WriteLine(Name + " used " + skill2 + ".");
+            Logger.GetInstance().Log("Player (" + Type + ") used " + skill2);
             Defence += 5; //NEEDS CHANGING TO ONLY BE TEMPORARY
             Console.WriteLine("Defence up (+5) until next turn.");
             //Placeholder return value
