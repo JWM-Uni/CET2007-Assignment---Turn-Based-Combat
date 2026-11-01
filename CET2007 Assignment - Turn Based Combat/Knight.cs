@@ -10,7 +10,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
     {
         private string skill1 = "Piercing Slash";
         private string skill2 = "Guardian Aura";
-        public Knight() : base(1, "Cedric Ironheart", "Knight", 200, 35, 20)
+        public Knight() : base(1, "Cedric Ironheart", "Knight", 200, 25, 15)
         {
             //Parameters are preset as the characters are the same each time the game is ran
             //All parameters are passed up to the base class to keep them encapsulated

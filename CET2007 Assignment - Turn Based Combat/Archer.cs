@@ -10,7 +10,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
     {
         private string skill1 = "Sharp Arrow";
         private string skill2 = "Precision Stance";
-        public Archer() : base(2, "Robin Hood", "Archer", 160, 40, 15)
+        public Archer() : base(2, "Robin Hood", "Archer", 160, 30, 10)
         {
             //Parameters are preset as the characters are the same each time the game is ran
             //All parameters are passed up to the base class to keep them encapsulated

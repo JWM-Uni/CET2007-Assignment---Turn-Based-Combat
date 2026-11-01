@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
@@ -10,9 +11,13 @@ namespace CET2007_Assignment___Turn_Based_Combat
     {
         static void Main(string[] args)
         {
-            //Temporary test to see if info displays properly
-            Knight knight = new Knight();
-            knight.CharacterInfo();
+            Console.WriteLine("Choose a character: ");
+            string choice = Console.ReadLine();
+            CharacterFactory characters = new CharacterFactory();
+            Combatant player = characters.CreateCharacter(choice);
+
+            player.CharacterInfo();
+            
         }
     }
 }

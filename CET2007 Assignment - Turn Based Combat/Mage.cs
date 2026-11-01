@@ -10,7 +10,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
     {
         private string skill1 = "Fireball";
         private string skill2 = "Healing Pulse";
-        public Mage() : base(3, "Lianne Warde", "Mage", 120, 20, 5)
+        public Mage() : base(3, "Lianne Warde", "Mage", 120, 15, 5)
         {
             //Parameters are preset as the characters are the same each time the game is ran
             //All parameters are passed up to the base class to keep them encapsulated
@@ -20,7 +20,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         {
             Console.WriteLine(Name + " used " + skill1 + ".");
             Logger.GetInstance().Log("Player (" + Type + ") used " + skill1);
-            int DamageBonus = 45;
+            int DamageBonus = 40;
             return Attack + DamageBonus;
         }
 
