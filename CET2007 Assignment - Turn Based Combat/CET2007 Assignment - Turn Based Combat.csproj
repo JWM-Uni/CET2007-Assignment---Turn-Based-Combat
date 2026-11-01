@@ -48,6 +48,7 @@
     <Compile Include="AttackObserver.cs" />
     <Compile Include="CharacterFactory.cs" />
     <Compile Include="Combatant.cs" />
+    <Compile Include="CombatSelection.cs" />
     <Compile Include="IDamageObserver.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Logger.cs" />

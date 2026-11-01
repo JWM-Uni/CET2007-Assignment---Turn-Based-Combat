@@ -14,8 +14,10 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public int Health { get; set; }
         public int Attack {  get; set; }
         public int Defence { get; set; }
+        public string Skill1Name { get; set; }
+        public string Skill2Name { get; set; }
 
-        public Combatant(int id, string name, string type, int health, int attack, int defence)
+        public Combatant(int id, string name, string type, int health, int attack, int defence, string skill1, string skill2)
         {
             ID = id;
             Name = name;
@@ -23,19 +25,19 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Health = health;
             Attack = attack;
             Defence = defence;
+            Skill1Name = skill1;
+            Skill2Name = skill2;
         }
-        public virtual int BasicAttack()
+        public int BasicAttack()
         {
-            //Placeholder text for basic attack action
-            Console.WriteLine("Attacking...");
-            return 0;
+            Console.WriteLine(Name + " uses basic attack.");
+            return Attack;
         }
 
-        public virtual int Defend()
+        public int Defend()
         {
-            //Placeholder text for defend action
-            Console.WriteLine("Defending...");
-            return 0;
+            Console.WriteLine(Name + " decides to defend");
+            return Defence;
         }
 
         public void TakeDamage(int damage)
@@ -55,6 +57,8 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine("Health: " + Health);
             Console.WriteLine("Attack: " + Attack);
             Console.WriteLine("Defence: " + Defence);
+            Console.WriteLine("Skill 1: " + Skill1Name);
+            Console.WriteLine("Skill 2: " + Skill2Name);
         }
         public abstract int Skill1();
         public abstract int Skill2();

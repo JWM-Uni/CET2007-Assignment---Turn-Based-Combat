@@ -8,9 +8,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
 {
     public class Knight : Combatant
     {
-        private string skill1 = "Piercing Slash";
-        private string skill2 = "Guardian Aura";
-        public Knight() : base(1, "Cedric Ironheart", "Knight", 200, 25, 15)
+        public Knight() : base(1, "Cedric Ironheart", "Knight", 200, 25, 15, "Piercing Slash", "Guardian Aura")
         {
             //Parameters are preset as the characters are the same each time the game is ran
             //All parameters are passed up to the base class to keep them encapsulated
@@ -18,16 +16,16 @@ namespace CET2007_Assignment___Turn_Based_Combat
 
         public override int Skill1()
         {
-            Console.WriteLine(Name + " used " + skill1 + ".");
-            Logger.GetInstance().Log("Player (" + Type + ") used " + skill1);
+            Console.WriteLine(Name + " used " + Skill1Name + ".");
+            Logger.GetInstance().Log("Player (" + Type + ") used " + Skill1Name);
             int DamageBonus = 10;
             return Attack + DamageBonus;
         }
 
         public override int Skill2()
         {
-            Console.WriteLine(Name + " used " + skill2 + ".");
-            Logger.GetInstance().Log("Player (" + Type + ") used " + skill2);
+            Console.WriteLine(Name + " used " + Skill2Name + ".");
+            Logger.GetInstance().Log("Player (" + Type + ") used " + Skill2Name);
             Defence += 10; //NEEDS CHANGING TO ONLY BE TEMPORARY
             Console.WriteLine("Defence up (+10) until next turn.");
             //Placeholder return value

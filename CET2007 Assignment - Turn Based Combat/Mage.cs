@@ -8,9 +8,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
 {
     public class Mage : Combatant
     {
-        private string skill1 = "Fireball";
-        private string skill2 = "Healing Pulse";
-        public Mage() : base(3, "Lianne Warde", "Mage", 120, 15, 5)
+        public Mage() : base(3, "Lianne Warde", "Mage", 120, 15, 5, "Fireball", "Healing Pulse")
         {
             //Parameters are preset as the characters are the same each time the game is ran
             //All parameters are passed up to the base class to keep them encapsulated
@@ -18,16 +16,16 @@ namespace CET2007_Assignment___Turn_Based_Combat
 
         public override int Skill1()
         {
-            Console.WriteLine(Name + " used " + skill1 + ".");
-            Logger.GetInstance().Log("Player (" + Type + ") used " + skill1);
+            Console.WriteLine(Name + " used " + Skill1Name + ".");
+            Logger.GetInstance().Log("Player (" + Type + ") used " + Skill1Name);
             int DamageBonus = 40;
             return Attack + DamageBonus;
         }
 
         public override int Skill2()
         {
-            Console.WriteLine(Name + " used " + skill2 + ".");
-            Logger.GetInstance().Log("Player (" + Type + ") used " + skill2);
+            Console.WriteLine(Name + " used " + Skill2Name + ".");
+            Logger.GetInstance().Log("Player (" + Type + ") used " + Skill2Name);
             Health += 40;
             Console.WriteLine("Healed 40 health.");
             Logger.GetInstance().Log("Player healed 40 health");
