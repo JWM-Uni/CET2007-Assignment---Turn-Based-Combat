@@ -47,6 +47,7 @@
     <Compile Include="Archer.cs" />
     <Compile Include="Combatant.cs" />
     <Compile Include="Knight.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Mage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
