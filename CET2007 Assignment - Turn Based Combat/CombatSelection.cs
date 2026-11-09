@@ -23,14 +23,13 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 Console.WriteLine("=== Choose an action ===" +
                 "1) Attack" +
                 "2) Defend" +
-                "3) " + Player.Skill1Name +
-                "4) " + Player.Skill2Name +
-                "5) Show Character Information" +
-                "6) Quit Game" +
+                "3) " + Player.SkillName +
+                "4) Show Character Information" +
+                "5) Quit Game" +
                 "Enter your choice: "
                 );
                 choice = Console.ReadLine();
-                if (choice == "5")
+                if (choice == "4")
                 {
                     Player.CharacterInfo();
                 }
