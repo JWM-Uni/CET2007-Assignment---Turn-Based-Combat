@@ -13,31 +13,19 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public string Type { get; private set; }
         public int Health { get; set; }
         public int Attack {  get; set; }
-        public int Defence { get; set; }
-        public string SkillName { get; set; }
-
-        public Combatant(int id, string name, string type, int health, int attack, int defence, string skill)
+        public Combatant(int id, string name, string type, int health, int attack)
         {
             ID = id;
             Name = name;
             Type = type;
             Health = health;
             Attack = attack;
-            Defence = defence;
-            SkillName = skill;
         }
         public int BasicAttack()
         {
             Console.WriteLine(Name + " uses basic attack.");
             Logger.GetInstance().Log("Player (" + Type + ") used basic attack.");
             return Attack;
-        }
-
-        public int Defend()
-        {
-            Console.WriteLine(Name + " decides to defend");
-            Logger.GetInstance().Log("Player (" + Type + ") used defend.");
-            return Defence;
         }
 
         public void TakeDamage(int damage)
@@ -47,21 +35,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Health -= damage;
             Console.WriteLine(Name + " now has " + Health + " health remaining.");
             Logger.GetInstance().Log("Player (" + Type + ") has " + Health + " health remaining.");
-            //Account for defence in the damage formulae
-
         }
-        public void CharacterInfo()
-        {
-            Console.WriteLine("=== Character Info ===");
-            Console.WriteLine("ID: " + ID);
-            Console.WriteLine("Name: " + Name);
-            Console.WriteLine("Type: " + Type);
-            Console.WriteLine("Health: " + Health);
-            Console.WriteLine("Attack: " + Attack);
-            Console.WriteLine("Defence: " + Defence);
-            Console.WriteLine("Skill: " + SkillName);
-            Logger.GetInstance().Log("Player decided to view their character information.");
-        }
-        public abstract int Skill();
     }
 }

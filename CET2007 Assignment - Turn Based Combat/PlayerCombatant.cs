@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CET2007_Assignment___Turn_Based_Combat
+{
+    public abstract class PlayerCombatant : Combatant
+    {
+        public int Defence { get; set; }
+        public string SkillName { get; set; }
+
+        public PlayerCombatant(int id, string name, string type, int health, int attack, int defence, string skill) : base(id, name, type, health, attack)
+        {
+            Defence = defence;
+            SkillName = skill;
+        }
+        public int Defend()
+        {
+            Console.WriteLine(Name + " decides to defend");
+            Logger.GetInstance().Log("Player (" + Type + ") used defend.");
+            return Defence;
+        }
+
+        public void CharacterInfo()
+        {
+            Console.WriteLine("=== Character Info ===");
+            Console.WriteLine("ID: " + ID);
+            Console.WriteLine("Name: " + Name);
+            Console.WriteLine("Type: " + Type);
+            Console.WriteLine("Health: " + Health);
+            Console.WriteLine("Attack: " + Attack);
+            Console.WriteLine("Defence: " + Defence);
+            Console.WriteLine("Skill: " + SkillName);
+            Logger.GetInstance().Log("Player decided to view their character information.");
+        }
+
+        public abstract int Skill();
+    }
+}

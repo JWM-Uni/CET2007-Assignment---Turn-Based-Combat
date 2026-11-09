@@ -14,7 +14,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine("Choose a character: ");
             string choice = Console.ReadLine();
             CharacterFactory characters = new CharacterFactory();
-            Combatant player = characters.CreateCharacter(choice);
+            PlayerCombatant player = characters.CreateCharacter(choice);
 
             player.CharacterInfo();
             

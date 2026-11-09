@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
-    public class Mage : Combatant
+    public class Mage : PlayerCombatant
     {
         public Mage() : base(3, "Lianne Warde", "Mage", 120, 15, 5, "Healing Pulse")
         {

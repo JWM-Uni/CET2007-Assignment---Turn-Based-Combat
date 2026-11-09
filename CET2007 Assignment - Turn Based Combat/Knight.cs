@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
-    public class Knight : Combatant
+    public class Knight : PlayerCombatant
     {
         public Knight() : base(1, "Cedric Ironheart", "Knight", 200, 25, 15, "Piercing Slash")
         {

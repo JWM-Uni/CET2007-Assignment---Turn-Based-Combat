@@ -8,9 +8,9 @@ namespace CET2007_Assignment___Turn_Based_Combat
 {
     public class CombatSelection
     {
-        private Combatant Player {  get; set; }
+        private PlayerCombatant Player {  get; set; }
 
-        public CombatSelection(Combatant player)
+        public CombatSelection(PlayerCombatant player)
         {
             Player = player;
         }

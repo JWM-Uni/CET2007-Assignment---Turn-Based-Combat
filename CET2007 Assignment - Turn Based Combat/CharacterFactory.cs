@@ -8,7 +8,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
 {
     public class CharacterFactory
     {
-        public Combatant CreateCharacter(string type)
+        public PlayerCombatant CreateCharacter(string type)
         {
             type = type.ToLower();
             if (type == "knight")

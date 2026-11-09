@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
-    public class Archer : Combatant
+    public class Archer : PlayerCombatant
     {
         public Archer() : base(2, "Robin Hood", "Archer", 160, 30, 10, "Sharp Arrow")
         {
