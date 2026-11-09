@@ -28,13 +28,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
             return Attack;
         }
 
-        public void TakeDamage(int damage)
-        {
-            Console.WriteLine(Name + " took " + damage + " damage from the attack.");
-            Logger.GetInstance().Log("Player (" + Type + ") took " + damage + " damage from the enemy attack.");
-            Health -= damage;
-            Console.WriteLine(Name + " now has " + Health + " health remaining.");
-            Logger.GetInstance().Log("Player (" + Type + ") has " + Health + " health remaining.");
-        }
+        public abstract void TakeDamage(int damage);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
@@ -34,6 +35,15 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine("Defence: " + Defence);
             Console.WriteLine("Skill: " + SkillName);
             Logger.GetInstance().Log("Player decided to view their character information.");
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            Console.WriteLine(Name + " took " + damage + " damage from the attack.");
+            Logger.GetInstance().Log("Player (" + Type + ") took " + damage + " damage from the enemy attack.");
+            Health -= damage;
+            Console.WriteLine(Name + " now has " + Health + " health remaining.");
+            Logger.GetInstance().Log("Player (" + Type + ") has " + Health + " health remaining.");
         }
 
         public abstract int Skill();

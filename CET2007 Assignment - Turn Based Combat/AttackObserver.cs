@@ -10,6 +10,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
     {
         public int DamageCalculation(int attackValue, int defenceValue)
         {
+            //NEED TO SET DEFENCE VALUE TO 0 IF THERE IS NO DEFEND ACTION TAKEN
             int actualDamage = 0;
             actualDamage = attackValue - defenceValue;
             return actualDamage;
