@@ -17,11 +17,11 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Defence = defence;
             SkillName = skill;
         }
-        public int Defend()
+        public bool Defend()
         {
             Console.WriteLine(Name + " decides to defend");
             Logger.GetInstance().Log("Player (" + Type + ") used defend.");
-            return Defence;
+            return true;
         }
 
         public void CharacterInfo()

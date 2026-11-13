@@ -28,11 +28,9 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 "5) Quit Game" +
                 "Enter your choice: "
                 );
+                //NEEDS ERROR HANDLING HERE FOR IF THE USER ENTERS SOMETHING WRONG
                 choice = Console.ReadLine();
-                if (choice == "4")
-                {
-                    Player.CharacterInfo();
-                }
+                return choice;
             }
             return choice;
         }

@@ -21,6 +21,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Health += 40;
             Console.WriteLine("Healed 40 health.");
             Logger.GetInstance().Log("Player healed 40 health");
+            //Returns 0 because it doesn't do damage
             return 0;
         }
     }
