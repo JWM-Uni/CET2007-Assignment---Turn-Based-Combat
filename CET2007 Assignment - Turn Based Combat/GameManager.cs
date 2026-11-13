@@ -42,9 +42,10 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 AttackObserver attack = new AttackObserver();
                 bool defending = false;
 
-                //Loops while an action
+                //Loops while an action is unselected + outputs current state of each character's health
                 while (playerAction == "") //NEEDS FIXING TO INCLUDE ERRORS FROM NO VALID INPUTS BEING SELECTED
                 {
+                    Console.WriteLine("\n" + Player.Name + "'s Health: " + Player.Health + " | " + Enemy.Name + "'s Health: " + Enemy.Health);
                     playerAction = playerTurn.ActionSelection();
                 }
 
