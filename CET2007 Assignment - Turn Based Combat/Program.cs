@@ -15,9 +15,9 @@ namespace CET2007_Assignment___Turn_Based_Combat
             string choice = Console.ReadLine();
             CharacterFactory characters = new CharacterFactory();
             PlayerCombatant player = characters.CreateCharacter(choice);
-
-            player.CharacterInfo();
-            
+            EnemyCombatant enemy = new EnemyCombatant();
+            GameManager gameManager = new GameManager(player, enemy);
+            gameManager.RunGame();
         }
     }
 }

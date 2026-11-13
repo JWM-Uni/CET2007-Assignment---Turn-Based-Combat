@@ -20,13 +20,13 @@ namespace CET2007_Assignment___Turn_Based_Combat
             string choice = "";
             while (choice == "" || choice == "5")
             {
-                Console.WriteLine("=== Choose an action ===" +
-                "1) Attack" +
-                "2) Defend" +
-                "3) " + Player.SkillName +
-                "4) Show Character Information" +
-                "5) Quit Game" +
-                "Enter your choice: "
+                Console.WriteLine("\n=== Choose an action ===" +
+                "\n1) Attack" +
+                "\n2) Defend" +
+                "\n3) " + Player.SkillName +
+                "\n4) Show Character Information" +
+                "\n5) Quit Game" +
+                "\nEnter your choice: "
                 );
                 //NEEDS ERROR HANDLING HERE FOR IF THE USER ENTERS SOMETHING WRONG
                 choice = Console.ReadLine();

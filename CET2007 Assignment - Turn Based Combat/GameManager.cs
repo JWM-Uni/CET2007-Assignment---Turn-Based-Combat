@@ -78,42 +78,50 @@ namespace CET2007_Assignment___Turn_Based_Combat
                         break;
                 }
 
-                //Manages the enemy's action per turn
-                if (defending)
+                if (Enemy.Health <= 0)
                 {
-                    int damage = attack.DamageCalculation(Enemy.BasicAttack(), Player.Defence);
-                    Player.TakeDamage(damage);
-                    defending = false;
-                }
-                else
-                {
-                    int damage = attack.DamageCalculation(Enemy.BasicAttack(), 0);
-                    Player.TakeDamage(damage);
+                    break;
                 }
 
+                //Prevents the enemy from taking their action for the turn and advancing turn count until the player picks an option other than show their summary or quitting the game
+                if (playerAction != "4" && playerAction != "5")
+                {
+                    //Manages the enemy's action per turn
+                    if (defending)
+                    {
+                        int damage = attack.DamageCalculation(Enemy.BasicAttack(), Player.Defence);
+                        Player.TakeDamage(damage);
+                        defending = false;
+                    }
+                    else
+                    {
+                        int damage = attack.DamageCalculation(Enemy.BasicAttack(), 0);
+                        Player.TakeDamage(damage);
+                    }
 
-                //Increments the turn count by 1 at the end of both character's actions for the round
-                turnCount++;
+                    //Increments the turn count by 1 at the end of both character's actions for the round
+                    turnCount++;
+                }
             }
 
             //Outcomes of the Game
 
-            if (Player.Health < 0) //Lose condition
+            if (Player.Health <= 0) //Lose condition
             {
-                Console.WriteLine("Your health has been reduced to 0. You lose.");
+                Console.WriteLine("\nYour health has been reduced to 0. You lose.");
                 Logger.GetInstance().Log("Player health reduced to 0. Player lost the game.");
             }
-            else if (Enemy.Health < 0)
+            else if (Enemy.Health <= 0) //Win condition
             {
-                Console.WriteLine("You reduced the enemy's health to 0. You win!");
+                Console.WriteLine("\nYou reduced the enemy's health to 0. You win!");
                 Logger.GetInstance().Log("Enemy health reduced to 0. Player won the game.");
             }
-            else
+            else //Quitting game
             {
-                Console.WriteLine("Quitting game.");
+                Console.WriteLine("\nQuitting game.");
                 Logger.GetInstance().Log("Player chose to quit the game. No winner.");
             }
-            Console.WriteLine("Thank you for playing!");
+            Console.WriteLine("\nThank you for playing!");
             Logger.GetInstance().Log("Game ended.");
         }
     }

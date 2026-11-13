@@ -19,14 +19,14 @@ namespace CET2007_Assignment___Turn_Based_Combat
         }
         public bool Defend()
         {
-            Console.WriteLine(Name + " decides to defend");
+            Console.WriteLine("\n" + Name + " decides to defend");
             Logger.GetInstance().Log("Player (" + Type + ") used defend.");
             return true;
         }
 
         public void CharacterInfo()
         {
-            Console.WriteLine("=== Character Info ===");
+            Console.WriteLine("\n=== Character Info ===");
             Console.WriteLine("ID: " + ID);
             Console.WriteLine("Name: " + Name);
             Console.WriteLine("Type: " + Type);
@@ -39,9 +39,13 @@ namespace CET2007_Assignment___Turn_Based_Combat
 
         public override void TakeDamage(int damage)
         {
-            Console.WriteLine(Name + " took " + damage + " damage from the attack.");
+            Console.WriteLine("\n" + Name + " took " + damage + " damage from the attack.");
             Logger.GetInstance().Log("Player (" + Type + ") took " + damage + " damage from the enemy attack.");
             Health -= damage;
+            if (Health < 0)
+            {
+                Health = 0;
+            }
             Console.WriteLine(Name + " now has " + Health + " health remaining.");
             Logger.GetInstance().Log("Player (" + Type + ") has " + Health + " health remaining.");
         }

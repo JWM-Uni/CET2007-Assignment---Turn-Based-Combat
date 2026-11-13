@@ -23,7 +23,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         }
         public int BasicAttack()
         {
-            Console.WriteLine(Name + " uses basic attack.");
+            Console.WriteLine("\n" + Name + " uses basic attack.");
             Logger.GetInstance().Log("Player (" + Type + ") used basic attack.");
             return Attack;
         }
