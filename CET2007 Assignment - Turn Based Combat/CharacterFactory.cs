@@ -3,37 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
     public class CharacterFactory
     {
-        public PlayerCombatant CreateCharacter(string type)
+        public PlayerCombatant CreateCharacter()
         {
-            type = type.ToLower();
-            if (type == "knight")
+            //Creates a list and objects of the available characters, then adds the characters to the list
+            List<PlayerCombatant> characterList = new List<PlayerCombatant>();
+            Knight knight = new Knight();
+            Archer archer = new Archer();
+            Mage mage = new Mage();
+            characterList.Add(knight);
+            characterList.Add(archer);
+            characterList.Add(mage);
+
+            //Allows the user to make a choice on what character they want to play
+            Console.WriteLine("=== Available Characters ===" +
+                "\n1) Knight" +
+                "\n2) Archer" +
+                "\n3) Mage" +
+                "\nEnter a character: "
+                );
+            string characterChoice = Console.ReadLine().ToLower(); //ADD EXTRA VALIDATION HERE TO ENSURE ONLY CHARACTERS ARE ENTERED
+            PlayerCombatant chosenCharacter = null;
+
+            //Performs a linear search through the character list to select the player's chosen character
+            int index = -1;
+            for (int i = 0; i < characterList.Count; i++) //EDIT FROM HERE
             {
-                Knight knight = new Knight();
-                Logger.GetInstance().Log("Created character: Knight");
-                return knight;
+                if (characterList[i].Type.ToLower() == characterChoice)
+                {
+                    Console.WriteLine("Creating character: " + characterList[i].Type);
+                    chosenCharacter = characterList[i];
+                    index = i;
+                    break;
+                }
             }
-            else if (type == "archer")
+            if (index == -1)
             {
-                Archer archer = new Archer();
-                Logger.GetInstance().Log("Created character: Archer");
-                return archer;
+                Console.WriteLine("Character type not found in list.");
             }
-            else if (type == "mage")
-            {
-                Mage mage = new Mage();
-                Logger.GetInstance().Log("Created character: Mage");
-                return mage;
-            }
-            else
-            {
-                //THROW AN EXCEPTION HERE FOR INVALID CHARACTER CLASS
-                return null;
-            }
+            return chosenCharacter;
         }
     }
 }

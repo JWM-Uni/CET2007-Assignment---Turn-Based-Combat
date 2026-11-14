@@ -30,7 +30,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Logger.GetInstance().Log("Game started.");
 
             //Creates all the variables and objects the game needs to run
-            CombatSelection playerTurn = new CombatSelection(Player);
             int turnCount = 1;
             bool gameRunning = true;
 
@@ -46,7 +45,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 while (playerAction == "") //NEEDS FIXING TO INCLUDE ERRORS FROM NO VALID INPUTS BEING SELECTED
                 {
                     Console.WriteLine("\n" + Player.Name + "'s Health: " + Player.Health + " | " + Enemy.Name + "'s Health: " + Enemy.Health);
-                    playerAction = playerTurn.ActionSelection();
+                    playerAction = Player.ActionSelection();
                 }
 
                 //Controls which action the player has selected for their turn and carries out the correct action
@@ -106,7 +105,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
             }
 
             //Outcomes of the Game
-
             if (Player.Health <= 0) //Lose condition
             {
                 Console.WriteLine("\nYour health has been reduced to 0. You lose.");
