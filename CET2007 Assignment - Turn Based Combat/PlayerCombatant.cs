@@ -16,11 +16,11 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// <summary>
         /// Gets or sets the player's defence stat
         /// </summary>
-        public int Defence { get; set; }
+        public int Defence { get; private set; }
         /// <summary>
         /// Gets or sets the player's skill name
         /// </summary>
-        public string SkillName { get; set; }
+        public string SkillName { get; private set; }
 
         /// <summary>
         /// Assigns the relevant attributes it has inherited to attributes PlayerCombatant shares, then passes the remaining attributes to the parent class

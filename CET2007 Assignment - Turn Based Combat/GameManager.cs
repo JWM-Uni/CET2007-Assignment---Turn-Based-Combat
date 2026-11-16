@@ -15,11 +15,11 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// <summary>
         /// Gets or sets the player object
         /// </summary>
-        public PlayerCombatant Player { get; set; }
+        public PlayerCombatant Player { get; private set; }
         /// <summary>
         /// Gets or sets the enemy object
         /// </summary>
-        public EnemyCombatant Enemy { get; set; }
+        public EnemyCombatant Enemy { get; private set; }
         
         /// <summary>
         /// Default constructor that sets the player and enemy objects to null

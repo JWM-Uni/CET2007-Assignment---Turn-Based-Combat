@@ -27,11 +27,11 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// <summary>
         /// Gets or sets the combatant's health
         /// </summary>
-        public int Health { get; set; }
+        public int Health { get; private set; }
         /// <summary>
         /// Gets or sets the combatant's attack
         /// </summary>
-        public int Attack {  get; set; }
+        public int Attack {  get; private set; }
         
         /// <summary>
         /// A constructor that takes parameters inherited from subclasses and sets the attributes to the specified values
