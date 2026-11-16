@@ -7,22 +7,43 @@ using System.Xml.Serialization;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
+    /// <summary>
+    /// Manages all operations needed to run the game, controlling the turn based process, player and enemy actions, and the game's outcomes
+    /// </summary>
     public class GameManager
     {
+        /// <summary>
+        /// Gets or sets the player object
+        /// </summary>
         public PlayerCombatant Player { get; set; }
+        /// <summary>
+        /// Gets or sets the enemy object
+        /// </summary>
         public EnemyCombatant Enemy { get; set; }
         
+        /// <summary>
+        /// Default constructor that sets the player and enemy objects to null
+        /// </summary>
         public GameManager()
         {
             Player = null;
             Enemy = null;
         }
+        /// <summary>
+        /// Parameterised constructor that sets the player and enemy to specified objects
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="enemy"></param>
         public GameManager(PlayerCombatant player, EnemyCombatant enemy)
         {
             Player = player;
             Enemy = enemy;
         }
 
+        /// <summary>
+        /// Runs the main game process, managing the player's actions each turn as well as the enemy's action.
+        /// It also manages the result of the game and any operations as a result of the players actions.
+        /// </summary>
         public void RunGame()
         {
             //Resets the log to record this instance of the game
@@ -41,60 +62,66 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 AttackObserver attack = new AttackObserver();
                 bool defending = false;
 
+                Logger.GetInstance().Log("Turn " + turnCount); //PUT IN A BETTER POSITION SO THAT IT DOESN'T DUPE
+
                 //Loops while an action is unselected + outputs current state of each character's health
                 while (playerAction == "") //NEEDS FIXING TO INCLUDE ERRORS FROM NO VALID INPUTS BEING SELECTED
                 {
-                    Console.WriteLine("\n" + Player.Name + "'s Health: " + Player.Health + " | " + Enemy.Name + "'s Health: " + Enemy.Health);
+                    Console.WriteLine("\nTurn " + turnCount + " | " + Player.Name + "'s Health: " + Player.Health + " | " + Enemy.Name + "'s Health: " + Enemy.Health);
                     playerAction = Player.ActionSelection();
                 }
 
                 //Controls which action the player has selected for their turn and carries out the correct action
                 switch (playerAction)
                 {
-                    case "1":
+                    case "1": //Manages the player's attack action
                         int damage = attack.DamageCalculation(Player.BasicAttack(), 0);
                         Enemy.TakeDamage(damage);
                         break;
 
-                    case "2":
+                    case "2": //Manages the player's defending action/status
                         defending = Player.Defend();
                         break;
 
-                    case "3":
+                    case "3": //Manages the player's skill action
                         damage = attack.DamageCalculation(Player.Skill(), 0);
                         Enemy.TakeDamage(damage);
                         break;
 
-                    case "4":
+                    case "4": //Manages the output of the selected character's information
                         Player.CharacterInfo();
+                        Logger.GetInstance().Log("Player decided to view their character information.");
                         break;
 
-                    case "5":
+                    case "5": //Breaks the loop to exit the game
                         gameRunning = false;
                         break;
 
-                    default:
+                    default: //Default case for if an invalid choice was entered
                         Console.WriteLine("Invalid choice. Please enter a valid choice (1-5)");
                         break;
                 }
 
+                //Checks to see if enemy has died to end the game process before they take their turn
                 if (Enemy.Health <= 0)
                 {
                     break;
                 }
 
-                //Prevents the enemy from taking their action for the turn and advancing turn count until the player picks an option other than show their summary or quitting the game
-                if (playerAction != "4" && playerAction != "5")
+                //Prevents the enemy from taking their action for the turn and advancing turn count until the player picks either attack, defend, or to use their skill
+                if (playerAction == "1" || playerAction == "2" || playerAction == "3")
                 {
                     //Manages the enemy's action per turn
                     if (defending)
                     {
+                        //Includes player's defence in damage calculation if player is defending this turn
                         int damage = attack.DamageCalculation(Enemy.BasicAttack(), Player.Defence);
                         Player.TakeDamage(damage);
                         defending = false;
                     }
                     else
                     {
+                        //Accounts only for enemy damage since player is not defending
                         int damage = attack.DamageCalculation(Enemy.BasicAttack(), 0);
                         Player.TakeDamage(damage);
                     }

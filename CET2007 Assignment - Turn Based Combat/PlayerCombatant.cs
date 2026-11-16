@@ -7,16 +7,41 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
+    /// <summary>
+    /// An abstract class PlayerCombatant used to provide each player character type with the same attributes and methods that only the player needs.
+    /// Inherits from Combatant.
+    /// </summary>
     public abstract class PlayerCombatant : Combatant
     {
+        /// <summary>
+        /// Gets or sets the player's defence stat
+        /// </summary>
         public int Defence { get; set; }
+        /// <summary>
+        /// Gets or sets the player's skill name
+        /// </summary>
         public string SkillName { get; set; }
 
+        /// <summary>
+        /// Assigns the relevant attributes it has inherited to attributes PlayerCombatant shares, then passes the remaining attributes to the parent class
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="health"></param>
+        /// <param name="attack"></param>
+        /// <param name="defence"></param>
+        /// <param name="skill"></param>
         public PlayerCombatant(int id, string name, string type, int health, int attack, int defence, string skill) : base(id, name, type, health, attack)
         {
             Defence = defence;
             SkillName = skill;
         }
+
+        /// <summary>
+        /// Manages the player's defending status, outputs it, and logs it
+        /// </summary>
+        /// <returns>A true value to indicate the player is defending</returns>
         public bool Defend()
         {
             Console.WriteLine("\n" + Name + " decides to defend");
@@ -24,6 +49,9 @@ namespace CET2007_Assignment___Turn_Based_Combat
             return true;
         }
 
+        /// <summary>
+        /// Outputs all character information to the user
+        /// </summary>
         public void CharacterInfo()
         {
             Console.WriteLine("\n=== Character Info ===");
@@ -34,9 +62,13 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine("Attack: " + Attack);
             Console.WriteLine("Defence: " + Defence);
             Console.WriteLine("Skill: " + SkillName);
-            Logger.GetInstance().Log("Player decided to view their character information.");
         }
 
+        /// <summary>
+        /// Takes a damage integer as a parameter and subtracts it from the current health.
+        /// Outputs and logs the damage taken, as well as the player's remaining health
+        /// </summary>
+        /// <param name="damage"></param>
         public override void TakeDamage(int damage)
         {
             Console.WriteLine("\n" + Name + " took " + damage + " damage from the attack.");
@@ -50,8 +82,16 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Logger.GetInstance().Log("Player (" + Type + ") has " + Health + " health remaining.");
         }
 
+        /// <summary>
+        /// Requires subclasses to implement the Skill method, but allows for flexibility so each character type can have a unique skill
+        /// </summary>
+        /// <returns></returns>
         public abstract int Skill();
 
+        /// <summary>
+        /// Outputs a selection of actions to the player, then asks them to enter their choice
+        /// </summary>
+        /// <returns>The player's chosen choice</returns>
         public string ActionSelection()
         {
             string choice = "";
@@ -65,7 +105,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 "\n5) Quit Game" +
                 "\nEnter your choice: "
                 );
-                //NEEDS ERROR HANDLING HERE FOR IF THE USER ENTERS SOMETHING WRONG
                 choice = Console.ReadLine();
                 return choice;
             }
