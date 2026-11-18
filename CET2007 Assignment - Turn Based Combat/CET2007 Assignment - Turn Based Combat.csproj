@@ -83,6 +83,7 @@
     <Compile Include="EnemyCombatant.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="IDamageObserver.cs" />
+    <Compile Include="JsonManager.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Mage.cs" />

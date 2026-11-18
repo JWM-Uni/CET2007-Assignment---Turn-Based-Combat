@@ -55,15 +55,12 @@ namespace CET2007_Assignment___Turn_Based_Combat
         {
             //Loads the data from the json file into list if one exists, or creates a new list and adds new character data to it
             const string JsonPath = "characterData.json";
+            JsonManager jsonSaveLoad = new JsonManager();
             try
             {
                 if (File.Exists(JsonPath))
                 {
-                    string JsonData = File.ReadAllText(JsonPath);
-                    characterList = JsonSerializer.Deserialize<List<PlayerCombatant>>(JsonData);
-                    string load = "Loaded " + characterList.Count + " character's data from file.";
-                    Console.WriteLine(load);
-                    Logger.GetInstance().Log(load);
+                    characterList = jsonSaveLoad.LoadCharacterData();
                 }
                 else
                 {
@@ -96,11 +93,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             //Saves the list of character's data to a json by serialising it
             try
             {
-                string JsonData = JsonSerializer.Serialize(characterList);
-                File.WriteAllText(JsonPath, JsonData);
-                string save = "Character data saved successfully.";
-                Console.WriteLine(save);
-                Logger.GetInstance().Log(save);
+                jsonSaveLoad.SaveCharacterData(characterList);
             }
             catch (Exception ex)
             {
