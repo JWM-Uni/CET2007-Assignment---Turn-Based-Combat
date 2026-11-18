@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization; //To allow for polymorphic serialisation and deserialisation of the abstract class
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
+    //This section allows the Json Serialiser/Deserialiser to identify which concrete class the Json data is from to format it as an object of that class when saving/loading from the file
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type")]
+    [JsonDerivedType(typeof(Knight), "Knight")]
+    [JsonDerivedType(typeof(Archer), "Archer")]
+    [JsonDerivedType(typeof(Mage), "Mage")]
+
     /// <summary>
     /// An abstract class PlayerCombatant used to provide each player character type with the same attributes and methods that only the player needs.
     /// Inherits from Combatant.

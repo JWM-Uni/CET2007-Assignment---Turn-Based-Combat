@@ -27,7 +27,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// <summary>
         /// Gets or sets the combatant's health
         /// </summary>
-        public int Health { get; private set; }
+        public int Health { get; set; }
         /// <summary>
         /// Gets or sets the combatant's attack
         /// </summary>

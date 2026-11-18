@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json; //Added to allow for serialisation and deserialisation
+using System.Text.Json.Serialization; //To allow for polymorphic serialisation and deserialisation of the abstract class
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Linq;
