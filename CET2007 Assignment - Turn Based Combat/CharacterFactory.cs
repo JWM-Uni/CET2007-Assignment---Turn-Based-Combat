@@ -12,10 +12,48 @@ namespace CET2007_Assignment___Turn_Based_Combat
 {
     public class CharacterFactory
     {
+        List<PlayerCombatant> characterList = new List<PlayerCombatant>();
+
+        public void SortList()
+        {
+            string choice = "";
+            while (choice != "id" && choice != "name")
+            {
+                Console.WriteLine("\nSort character list by ID or Name? (ID/Name): ");
+                choice = Console.ReadLine().ToLower();
+                if (choice == "id")
+                {
+                    for (int i = 0; i < characterList.Count - 1; i++)
+                    {
+                        for (int j = 0; j < characterList.Count - i - 1; j++)
+                        {
+                            if (characterList[i].ID > characterList[j + 1].ID)
+                            {
+                                PlayerCombatant temp = characterList[j];
+                                characterList[j] = characterList[j + 1];
+                                characterList[j + 1] = temp;
+                            }
+                        }
+                    }
+                    Console.WriteLine("Sorted character list by ID.");
+                    Logger.GetInstance().Log("Player chose to sort character list by ID.");
+                }
+                else if (choice == "name")
+                {
+                    characterList.Sort();
+                    Console.WriteLine("Sorted character list by Name.");
+                    Logger.GetInstance().Log("Player chose to sort character list by Name.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice. Please input a valid choice.");
+                }
+            }
+        }
+
         public PlayerCombatant CreateCharacter()
         {
             //Loads the data from the json file into list if one exists, or creates a new list and adds new character data to it
-            List<PlayerCombatant> characterList = new List<PlayerCombatant>();
             const string JsonPath = "characterData.json";
             try
             {
@@ -51,6 +89,9 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 Logger.GetInstance().Log("Error: " + ex.Message);
                 Console.WriteLine("Error: " + ex.Message);
             }
+
+            //Calls the previously established sort list function to sort by ID or Name
+            SortList();
 
             //Saves the list of character's data to a json by serialising it
             try
