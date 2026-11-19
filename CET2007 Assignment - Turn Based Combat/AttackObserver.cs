@@ -20,11 +20,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public int DamageCalculation(int attackValue, int defenceValue)
         {
             int actualDamage = attackValue - defenceValue;
-            
-            if (actualDamage <= 0) //Ensures an attack does at least 1 damage, rather than 0 (prevents a character from being entirely invincible)
-            {
-                actualDamage = 1;
-            }
             return actualDamage;
         }
     }

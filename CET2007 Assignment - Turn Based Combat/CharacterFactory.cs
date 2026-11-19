@@ -27,7 +27,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
                     {
                         for (int j = 0; j < characterList.Count - i - 1; j++)
                         {
-                            if (characterList[i].ID > characterList[j + 1].ID)
+                            if (characterList[j].ID > characterList[j + 1].ID)
                             {
                                 PlayerCombatant temp = characterList[j];
                                 characterList[j] = characterList[j + 1];
