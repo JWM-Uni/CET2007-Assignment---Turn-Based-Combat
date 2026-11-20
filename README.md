@@ -22,6 +22,8 @@ Open the Debug folder
 
 The log is the text file titled 'log.txt', and the character data is stored in the json file titled 'characterData.json'
 
+-----
+
 ## Design choices explained
 
 
