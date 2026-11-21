@@ -16,7 +16,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// </summary>
         /// <param name="attackValue"></param>
         /// <param name="defenceValue"></param>
-        /// <returns>Returns the damage taken after calculations</returns>
-        int DamageCalculation(int attackValue, int defenceValue);
+        void OnDamageCalculation(int attackValue, int defenceValue);
     }
 }

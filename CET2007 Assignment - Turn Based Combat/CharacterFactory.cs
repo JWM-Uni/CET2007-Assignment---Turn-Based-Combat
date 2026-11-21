@@ -10,18 +10,27 @@ using System.Xml.Linq;
 
 namespace CET2007_Assignment___Turn_Based_Combat
 {
+    /// <summary>
+    /// Manages the player's character creation/selection
+    /// </summary>
     public class CharacterFactory
     {
+        /// <summary>
+        /// Creates a list to store the 3 character's data in
+        /// </summary>
         List<PlayerCombatant> characterList = new List<PlayerCombatant>();
 
+        /// <summary>
+        /// Allows the user to choose between sorting the character selection menu by either ID or Name using bubble sort or built-in .Sort()
+        /// </summary>
         public void SortList()
         {
             string choice = "";
-            while (choice != "id" && choice != "name")
+            while (choice != "id" && choice != "name") //Loops until a valid choice is selected
             {
                 Console.WriteLine("\nSort character list by ID or Name? (ID/Name): ");
                 choice = Console.ReadLine().ToLower();
-                if (choice == "id")
+                if (choice == "id") //Handles sorting the list by ID (manual bubble sort implementation)
                 {
                     for (int i = 0; i < characterList.Count - 1; i++)
                     {
@@ -38,19 +47,25 @@ namespace CET2007_Assignment___Turn_Based_Combat
                     Console.WriteLine("Sorted character list by ID.");
                     Logger.GetInstance().Log("Player chose to sort character list by ID.");
                 }
-                else if (choice == "name")
+                else if (choice == "name") //Handles sorting the list by name (automatic built-in sort)
                 {
                     characterList.Sort();
                     Console.WriteLine("Sorted character list by Name.");
                     Logger.GetInstance().Log("Player chose to sort character list by Name.");
                 }
-                else
+                else //Outputs invalid choice method and loops
                 {
                     Console.WriteLine("Invalid choice. Please input a valid choice.");
                 }
             }
         }
 
+        /// <summary>
+        /// Creates the characters by loading the data from characterData.json and adding the 3 character's data to the list, or creates a new list 
+        /// and adds the characters if no json is found. Then saves a copy of the character data in the list to characterData.json.
+        /// Allows the player to choose the character they want and returns that character.
+        /// </summary>
+        /// <returns>A subclass of PLayerCombatant based on which character the user chose</returns>
         public PlayerCombatant CreateCharacter()
         {
             //Loads the data from the json file into list if one exists, or creates a new list and adds new character data to it
@@ -58,15 +73,14 @@ namespace CET2007_Assignment___Turn_Based_Combat
             JsonManager jsonSaveLoad = new JsonManager();
             try
             {
-                if (File.Exists(JsonPath))
+                if (File.Exists(JsonPath)) //Loads the data if the json file is found
                 {
                     characterList = jsonSaveLoad.LoadCharacterData();
                 }
-                else
+                else //If the file was not found, creates a fresh list of character data
                 {
                     Console.WriteLine("No data found, starting new list.");
 
-                    //Creates a list and objects of the available characters, then adds the characters to the list if the file was not loaded
                     characterList = new List<PlayerCombatant>();
                     Knight knight = new Knight();
                     Archer archer = new Archer();
@@ -76,12 +90,12 @@ namespace CET2007_Assignment___Turn_Based_Combat
                     characterList.Add(mage);
                 }
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException ex) //Handles the error for no file being located
             {
                 Logger.GetInstance().Log("Error loading character data: " + ex.Message);
                 Console.WriteLine("Error loading character data: " + ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception ex) //Handles general errors with loading the character data from json
             {
                 Logger.GetInstance().Log("Error: " + ex.Message);
                 Console.WriteLine("Error: " + ex.Message);
@@ -90,12 +104,11 @@ namespace CET2007_Assignment___Turn_Based_Combat
             //Calls the previously established sort list function to sort by ID or Name
             SortList();
 
-            //Saves the list of character's data to a json by serialising it
-            try
+            try //Saves the list of character's data to a json by serialising it
             {
                 jsonSaveLoad.SaveCharacterData(characterList);
             }
-            catch (Exception ex)
+            catch (Exception ex) //Handles general errors with saving the character data to a json
             {
                 Logger.GetInstance().Log("Error saving character data: " + ex.Message);
                 Console.WriteLine("Error saving character data: " + ex.Message);
@@ -113,7 +126,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 "\n1) Knight" +
                 "\n2) Archer" +
                 "\n3) Mage" +
-                "\nEnter a character: "
+                "\nEnter a character (Knight/Archer/Mage): "
                 );
             string characterChoice = Console.ReadLine().ToLower(); //ADD EXTRA VALIDATION HERE TO ENSURE ONLY CHARACTERS ARE ENTERED
             PlayerCombatant chosenCharacter = null;
@@ -130,7 +143,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
                     break;
                 }
             }
-            if (index == -1)
+            if (index == -1) //Outputs a message if the character is not found in the list
             {
                 Console.WriteLine("Character type not found in list.");
             }

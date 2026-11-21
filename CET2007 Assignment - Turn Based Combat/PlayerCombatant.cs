@@ -16,7 +16,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
 
     /// <summary>
     /// An abstract class PlayerCombatant used to provide each player character type with the same attributes and methods that only the player needs.
-    /// Inherits from Combatant.
+    /// Inherits from Combatant, and implements IComparable so it can be sorted in the CharacterFactory by name
     /// </summary>
     public abstract class PlayerCombatant : Combatant, IComparable<PlayerCombatant>
     {
@@ -118,6 +118,11 @@ namespace CET2007_Assignment___Turn_Based_Combat
             return choice;
         }
 
+        /// <summary>
+        /// Compares the current PlayerCombatant's name with another and decides which one comes first alphabetically
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>An integer determining whether this object comes before or after the one it's being compared with</returns>
         public int CompareTo(PlayerCombatant other)
         {
             return Name.CompareTo(other.Name);

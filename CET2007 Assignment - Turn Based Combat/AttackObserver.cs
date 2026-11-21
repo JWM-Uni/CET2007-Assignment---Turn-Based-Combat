@@ -12,15 +12,21 @@ namespace CET2007_Assignment___Turn_Based_Combat
     public class AttackObserver : IDamageObserver
     {
         /// <summary>
+        /// Gets or sets the ActualDamage taken
+        /// </summary>
+        public int ActualDamage { get; private set; }
+        /// <summary>
         /// Takes an attack value and a defence value, and calculates the damage taken
         /// </summary>
         /// <param name="attackValue"></param>
         /// <param name="defenceValue"></param>
-        /// <returns>Returns the damage taken after calculations</returns>
-        public int DamageCalculation(int attackValue, int defenceValue)
+        public void OnDamageCalculation(int attackValue, int defenceValue)
         {
-            int actualDamage = attackValue - defenceValue;
-            return actualDamage;
+            ActualDamage = attackValue - defenceValue;
+            if (ActualDamage < 0)
+            {
+                ActualDamage = 0;
+            }
         }
     }
 }

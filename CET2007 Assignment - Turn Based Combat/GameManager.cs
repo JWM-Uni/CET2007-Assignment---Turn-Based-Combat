@@ -20,7 +20,10 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// Gets or sets the enemy object
         /// </summary>
         public EnemyCombatant Enemy { get; private set; }
-        
+        /// <summary>
+        /// Creates a private AttackObserver object
+        /// </summary>
+        private AttackObserver DamageObserver;
         /// <summary>
         /// Default constructor that sets the player and enemy objects to null
         /// </summary>
@@ -41,6 +44,27 @@ namespace CET2007_Assignment___Turn_Based_Combat
         }
 
         /// <summary>
+        /// Subscribes to the GameManager to the AttackObserver
+        /// </summary>
+        /// <param name="damageObserver"></param>
+        public void SubscribeToObserver(AttackObserver damageObserver)
+        {
+            DamageObserver = damageObserver;
+        }
+
+        /// <summary>
+        /// Notifies the observer that a damage calculation is needed and receives the result
+        /// </summary>
+        /// <param name="attackValue"></param>
+        /// <param name="defenceValue"></param>
+        /// <returns>The calculated damage of the attack</returns>
+        public int NotifyDamageCalculation(int attackValue, int defenceValue)
+        {
+            DamageObserver.OnDamageCalculation(attackValue, defenceValue);
+            return DamageObserver.ActualDamage;
+        }
+
+        /// <summary>
         /// Runs the main game process, managing the player's actions each turn as well as the enemy's action.
         /// It also manages the result of the game and any operations as a result of the players actions.
         /// </summary>
@@ -53,13 +77,15 @@ namespace CET2007_Assignment___Turn_Based_Combat
             //Creates all the variables and objects the game needs to run
             int turnCount = 1;
             bool gameRunning = true;
+            //Subscribes to the AttackObserver for damage calculations
+            AttackObserver attack = new AttackObserver();
+            SubscribeToObserver(attack);
 
             //While loop to keep running until either one side has no health remaining, or the game is exited.
             while ((Player.Health > 0 || Enemy.Health > 0) && gameRunning)
             {
                 //Manages the player's action per turn
                 string playerAction = "";
-                AttackObserver attack = new AttackObserver();
                 bool defending = false;
 
                 Logger.GetInstance().Log("Turn " + turnCount); //PUT IN A BETTER POSITION SO THAT IT DOESN'T DUPE
@@ -75,7 +101,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 switch (playerAction)
                 {
                     case "1": //Manages the player's attack action
-                        int damage = attack.DamageCalculation(Player.BasicAttack(), 0);
+                        int damage = NotifyDamageCalculation(Player.BasicAttack(), 0);
                         Enemy.TakeDamage(damage);
                         break;
 
@@ -84,7 +110,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
                         break;
 
                     case "3": //Manages the player's skill action
-                        damage = attack.DamageCalculation(Player.Skill(), 0);
+                        damage = NotifyDamageCalculation(Player.Skill(), 0);
                         Enemy.TakeDamage(damage);
                         break;
 
@@ -115,14 +141,14 @@ namespace CET2007_Assignment___Turn_Based_Combat
                     if (defending)
                     {
                         //Includes player's defence in damage calculation if player is defending this turn
-                        int damage = attack.DamageCalculation(Enemy.BasicAttack(), Player.Defence);
+                        int damage = NotifyDamageCalculation(Enemy.BasicAttack(), Player.Defence);
                         Player.TakeDamage(damage);
                         defending = false;
                     }
                     else
                     {
                         //Accounts only for enemy damage since player is not defending
-                        int damage = attack.DamageCalculation(Enemy.BasicAttack(), 0);
+                        int damage = NotifyDamageCalculation(Enemy.BasicAttack(), 0);
                         Player.TakeDamage(damage);
                     }
 
