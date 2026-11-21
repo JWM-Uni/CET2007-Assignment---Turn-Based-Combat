@@ -21,7 +21,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// </summary>
         public EnemyCombatant Enemy { get; private set; }
         /// <summary>
-        /// Creates a private AttackObserver object
+        /// Creates a variable to store an AttackObserver
         /// </summary>
         private AttackObserver DamageObserver;
         /// <summary>
