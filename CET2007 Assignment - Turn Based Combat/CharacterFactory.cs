@@ -121,14 +121,25 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 character.CharacterInfo();
             }
 
-            //Allows the user to make a choice on what character they want to play
-            Console.WriteLine("\n=== Available Characters ===" +
-                "\n1) Knight" +
-                "\n2) Archer" +
-                "\n3) Mage" +
-                "\nEnter a character (Knight/Archer/Mage): "
-                );
-            string characterChoice = Console.ReadLine().ToLower(); //ADD EXTRA VALIDATION HERE TO ENSURE ONLY CHARACTERS ARE ENTERED
+            //Ensures it will loop until a valid character type is entered
+            string characterChoice = "";
+            while (characterChoice != "knight" && characterChoice != "archer" && characterChoice != "mage")
+            {
+                //Allows the user to make a choice on what character they want to play
+                Console.WriteLine("\n=== Available Characters ===" +
+                    "\n1) Knight" +
+                    "\n2) Archer" +
+                    "\n3) Mage" +
+                    "\nEnter a character (Knight/Archer/Mage): "
+                    );
+                characterChoice = Console.ReadLine().ToLower();
+                if (characterChoice != "knight" && characterChoice != "archer" && characterChoice != "mage")
+                {
+                    Console.WriteLine("\nPlease pick a valid character type.");
+                }
+            }
+            
+            
             PlayerCombatant chosenCharacter = null;
 
             //Performs a linear search through the character list to select the player's chosen character
