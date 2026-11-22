@@ -18,7 +18,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// <summary>
         /// Creates a list to store the 3 character's data in
         /// </summary>
-        List<PlayerCombatant> characterList = new List<PlayerCombatant>();
+        private List<PlayerCombatant> characterList = new List<PlayerCombatant>();
 
         /// <summary>
         /// Allows the user to choose between sorting the character selection menu by either ID or Name using bubble sort or built-in .Sort()
