@@ -81,7 +81,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine("\n" + Name + " took " + damage + " damage from the attack.");
             Logger.GetInstance().Log("Player (" + Type + ") took " + damage + " damage from the enemy attack.");
             Health -= damage;
-            if (Health < 0)
+            if (Health < 0) //Ensures health can't enter negatives
             {
                 Health = 0;
             }
@@ -102,19 +102,16 @@ namespace CET2007_Assignment___Turn_Based_Combat
         public string ActionSelection()
         {
             string choice = "";
-            while (choice == "" || choice == "5")
-            {
-                Console.WriteLine("\n=== Choose an action ===" +
-                "\n1) Attack" +
-                "\n2) Defend" +
-                "\n3) " + SkillName +
-                "\n4) Show Character Information" +
-                "\n5) Quit Game" +
-                "\nEnter your choice: "
-                );
-                choice = Console.ReadLine();
-                return choice;
-            }
+
+            Console.WriteLine("\n=== Choose an action ===" +
+            "\n1) Attack" +
+            "\n2) Defend" +
+            "\n3) " + SkillName +
+            "\n4) Show Character Information" +
+            "\n5) Quit Game" +
+            "\nEnter your choice: "
+            );
+            choice = Console.ReadLine();
             return choice;
         }
 

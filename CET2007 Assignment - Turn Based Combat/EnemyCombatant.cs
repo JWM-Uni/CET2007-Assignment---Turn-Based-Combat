@@ -31,7 +31,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             Console.WriteLine("\n" + Name + " took " + damage + " damage from the attack.");
             Logger.GetInstance().Log(Type + " " + Name + " took " + damage + " damage from the player attack.");
             Health -= damage;
-            if (Health < 0)
+            if (Health < 0) //Ensures health can't enter negatives
             {
                 Health = 0;
             }

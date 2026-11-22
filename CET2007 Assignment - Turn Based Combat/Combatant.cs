@@ -8,7 +8,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
 {
     /// <summary>
     /// An abstract class of Combatant used to provide both the player and the enemy characters with the attributes and methods they both share.
-    /// Parent class of PLayerCombatant and EnemyCombatant.
+    /// Parent class of PlayerCombatant and EnemyCombatant.
     /// </summary>
     public abstract class Combatant
     {

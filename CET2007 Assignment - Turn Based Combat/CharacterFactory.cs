@@ -158,7 +158,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
             {
                 Console.WriteLine("Character type not found in list.");
             }
-            return chosenCharacter; //FIX ISSUE OF CHARACTER NOT BEING RETURNED IF UNFOUND
+            return chosenCharacter;
         }
     }
 }

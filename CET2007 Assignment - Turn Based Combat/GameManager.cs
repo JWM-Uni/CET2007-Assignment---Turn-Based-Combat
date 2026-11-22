@@ -88,10 +88,10 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 string playerAction = "";
                 bool defending = false;
 
-                Logger.GetInstance().Log("Turn " + turnCount); //PUT IN A BETTER POSITION SO THAT IT DOESN'T DUPE
+                Logger.GetInstance().Log("Turn " + turnCount);
 
                 //Loops while an action is unselected + outputs current state of each character's health
-                while (playerAction == "") //NEEDS FIXING TO INCLUDE ERRORS FROM NO VALID INPUTS BEING SELECTED
+                while (playerAction == "")
                 {
                     Console.WriteLine("\nTurn " + turnCount + " | " + Player.Name + "'s Health: " + Player.Health + " | " + Enemy.Name + "'s Health: " + Enemy.Health);
                     playerAction = Player.ActionSelection();
