@@ -11,16 +11,18 @@ namespace CET2007_Assignment___Turn_Based_Combat
     {
         static void Main(string[] args)
         {
-            //Creates a character factory to create and select the player's choice of character
-            CharacterFactory characters = new CharacterFactory();
-            PlayerCombatant player = characters.CreateCharacter();
+            //Creates a game manager
+            GameManager gameManager = new GameManager();
 
-            //Creates the enemy for the game
-            EnemyCombatant enemy = new EnemyCombatant();
+            //Opens the menu and lets the player choose options or start the game
+            string startOrExit = gameManager.GameMenu();
 
-            //Creates a game manager and passes the created player and enemy characters as parameters, then runs the game
-            GameManager gameManager = new GameManager(player, enemy);
-            gameManager.RunGame();
+            //If start game (1) was the output of GameMenu, runs the game, otherwise the program ends
+            if (startOrExit == "1")
+            {
+                gameManager.RunGame();
+            }
+            else { }
         }
     }
 }

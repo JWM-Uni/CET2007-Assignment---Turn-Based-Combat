@@ -65,6 +65,68 @@ namespace CET2007_Assignment___Turn_Based_Combat
         }
 
         /// <summary>
+        /// Manages the menu before starting the game, letting the player pick options and carrying out their choices
+        /// </summary>
+        /// <returns>A string containing either 1 or 5 (1 = start game, 5 = exit system)</returns>
+        public string GameMenu()
+        {
+            //Creates all the variables and objects the method requires
+            string choice = "";
+            CharacterFactory characters = new CharacterFactory();
+
+            //Loads the character data
+            characters.LoadData();
+
+            while (choice != "1" && choice != "5") //Loops and lets actions be selected until the game is started or cancelled
+            {
+                Console.WriteLine("\n=== System Menu ===" +
+                "\n1) Select character and start game" +
+                "\n2) Search for a character" +
+                "\n3) Sort character list" +
+                "\n4) View all character's information" +
+                "\n5) Exit system" +
+                "\nEnter your choice: "
+                );
+                choice = Console.ReadLine();
+
+                switch (choice) //Carries out the player's chosen action based on their input
+                {
+                    case "1": //Lets the player select their character and creates an enemy, then the game will start when the switch ends
+                        characters.SaveData();
+                        Console.WriteLine("\nLoading character select menu...");
+                        Logger.GetInstance().Log("Player chose to select character and start the game.");
+                        Player = characters.CreateCharacter();
+                        Enemy = new EnemyCombatant();
+                        break;
+
+                    case "2": //Searches for a character
+                        characters.SearchCharacter();
+                        break;
+
+                    case "3": //Sorts the list of characters by Name or ID (chosen by player), then saves the changes
+                        characters.SortList();
+                        characters.SaveData();
+                        break;
+
+                    case "4": //Outputs all the characters' information
+                        characters.ViewCharacterList();
+                        break;
+
+                    case "5": //Exits the system upon the switch ending
+                        Console.WriteLine("Exiting system...");
+                        Logger.GetInstance().Log("Player chose to exit the system.");
+                        break;
+
+                    default://Default case for if an invalid choice was entered
+                        Console.WriteLine("Invalid choice. Please enter a valid choice (1-5)");
+                        break;
+                }
+            }
+            return choice;
+        }
+
+
+        /// <summary>
         /// Runs the main game process, managing the player's actions each turn as well as the enemy's action.
         /// It also manages the result of the game and any operations as a result of the players actions.
         /// </summary>

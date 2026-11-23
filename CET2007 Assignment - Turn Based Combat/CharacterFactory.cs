@@ -16,9 +16,17 @@ namespace CET2007_Assignment___Turn_Based_Combat
     public class CharacterFactory
     {
         /// <summary>
-        /// Creates a list to store the 3 character's data in
+        /// Creates a list to store the 3 character's data
         /// </summary>
         private List<PlayerCombatant> characterList = new List<PlayerCombatant>();
+        /// <summary>
+        /// Creates and assigns a set filepath to a string
+        /// </summary>
+        const string JsonPath = "characterData.json";
+        /// <summary>
+        /// Creates a new JsonManager object
+        /// </summary>
+        JsonManager jsonSaveLoad = new JsonManager();
 
         /// <summary>
         /// Allows the user to choose between sorting the character selection menu by either ID or Name using bubble sort or built-in .Sort()
@@ -61,16 +69,11 @@ namespace CET2007_Assignment___Turn_Based_Combat
         }
 
         /// <summary>
-        /// Creates the characters by loading the data from characterData.json and adding the 3 character's data to the list, or creates a new list 
-        /// and adds the characters if no json is found. Then saves a copy of the character data in the list to characterData.json.
-        /// Allows the player to choose the character they want and returns that character.
+        /// Loads the character data into the list from the json file or constructs a new list
         /// </summary>
-        /// <returns>A subclass of PLayerCombatant based on which character the user chose</returns>
-        public PlayerCombatant CreateCharacter()
+        public void LoadData()
         {
             //Loads the data from the json file into list if one exists, or creates a new list and adds new character data to it
-            const string JsonPath = "characterData.json";
-            JsonManager jsonSaveLoad = new JsonManager();
             try
             {
                 if (File.Exists(JsonPath)) //Loads the data if the json file is found
@@ -100,10 +103,13 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 Logger.GetInstance().Log("Error: " + ex.Message);
                 Console.WriteLine("Error: " + ex.Message);
             }
+        }
 
-            //Calls the previously established sort list function to sort by ID or Name
-            SortList();
-
+        /// <summary>
+        /// Saves the character data currently in the list to the json file
+        /// </summary>
+        public void SaveData()
+        {
             try //Saves the list of character's data to a json by serialising it
             {
                 jsonSaveLoad.SaveCharacterData(characterList);
@@ -113,8 +119,59 @@ namespace CET2007_Assignment___Turn_Based_Combat
                 Logger.GetInstance().Log("Error saving character data: " + ex.Message);
                 Console.WriteLine("Error saving character data: " + ex.Message);
             }
+        }
 
+        /// <summary>
+        /// Searches for the requested character in the list and outputs there index
+        /// </summary>
+        public void SearchCharacter()
+        {
+            string searchChoice = "";
+            while (searchChoice != "knight" && searchChoice != "archer" && searchChoice != "mage")
+            {
+                Console.WriteLine("\nEnter the character you are searching for (Knight/Archer/Mage): ");
+                searchChoice = Console.ReadLine();
+            }
+            //Performs a linear search through the character list to select the player's chosen character
+            int index = -1;
+            for (int i = 0; i < characterList.Count; i++)
+            {
+                if (characterList[i].Type.ToLower() == searchChoice.ToLower())
+                {
+                    index = i;
+                    break;
+                }
+            }
+            Console.WriteLine("");
+            if (index == -1) //Outputs a message if the character is not found in the list
+            {
+                Console.WriteLine("Character type not found in list.");
+            }
+            else //Outputs the character's position in the list
+            {
+                Console.WriteLine(searchChoice + " exists and was found at index " + index);
+            }
+        }
 
+        /// <summary>
+        /// Shows the character information for all characters in the list
+        /// </summary>
+        public void ViewCharacterList()
+        {
+            //Shows available characters.
+            foreach (PlayerCombatant character in characterList)
+            {
+                character.CharacterInfo();
+            }
+        }
+
+        /// <summary>
+        /// Outputs the character information for each character in the list and then lets the player select a character.
+        /// Searches the list for the character and then returns it
+        /// </summary>
+        /// <returns>A subclass of PLayerCombatant based on which character the user chose</returns>
+        public PlayerCombatant CreateCharacter()
+        {
             //Shows available characters.
             foreach (PlayerCombatant character in characterList)
             {
@@ -138,7 +195,6 @@ namespace CET2007_Assignment___Turn_Based_Combat
                     Console.WriteLine("\nPlease pick a valid character type.");
                 }
             }
-            
             
             PlayerCombatant chosenCharacter = null;
 
