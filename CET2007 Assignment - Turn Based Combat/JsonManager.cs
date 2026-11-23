@@ -17,7 +17,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// <summary>
         /// Sets a constant value defining where the character data json is located
         /// </summary>
-        const string JsonPath = "characterData.json";
+        private const string JsonPath = "characterData.json";
 
         /// <summary>
         /// Loads the character data into a list from a json file and returns it
