@@ -26,7 +26,7 @@ namespace CET2007_Assignment___Turn_Based_Combat
         /// <summary>
         /// Creates a new JsonManager object
         /// </summary>
-        JsonManager jsonSaveLoad = new JsonManager();
+        private JsonManager jsonSaveLoad = new JsonManager();
 
         /// <summary>
         /// Allows the user to choose between sorting the character selection menu by either ID or Name using bubble sort or built-in .Sort()
